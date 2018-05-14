@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TasklistViewController.swift
 //  DoIt
 //
 //  Created by Lizzy on 2018/5/13.
@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TaskListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tasklistTV: UITableView!
     
     var  tasks : [Task] = []
+    var selectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tasklistTV.dataSource = self
         tasklistTV.delegate = self
     }
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasks.count
     }
@@ -36,6 +37,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.textLabel?.text = task.name
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
+        let task = tasks[indexPath.row]
+        performSegue(withIdentifier: "completeSegue", sender: task)
     }
     
     func makeTasks () -> [Task] {
@@ -62,6 +69,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         performSegue(withIdentifier: "addSegue", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addSegue" {
+            let nextVC = segue.destination as! CreateTaskViewController
+            nextVC.previousVC = self
+        }
+        if segue.identifier == "completeSegue" {
+            let nextVC = segue.destination as! CompleteTaskViewController
+            nextVC.task = sender as! Task
+            nextVC.previousVC = self
+        }
+        
+        
+    }
     
 }
 

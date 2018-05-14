@@ -13,7 +13,7 @@
         <!--Do It-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="DoIt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="TaskListViewController" customModule="DoIt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -43,11 +43,52 @@
                     <connections>
                         <outlet property="tasklistTV" destination="VPd-Fy-T48" id="KOH-DU-xev"/>
                         <segue destination="rCL-56-eEk" kind="show" identifier="addSegue" id="C74-o4-TCq"/>
+                        <segue destination="3Vq-ES-MUy" kind="show" identifier="completeSegue" id="0q5-z4-pWf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="941.60000000000002" y="691.304347826087"/>
+        </scene>
+        <!--Complete Task View Controller-->
+        <scene sceneID="m3g-gp-Xdd">
+            <objects>
+                <viewController id="3Vq-ES-MUy" customClass="CompleteTaskViewController" customModule="DoIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VIg-Cu-c0f">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofc-Pi-1va">
+                                <rect key="frame" x="152" y="239" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3K-u8-tLz">
+                                <rect key="frame" x="124.5" y="350" width="126" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Complete"/>
+                                <connections>
+                                    <action selector="completeButtontapped:" destination="3Vq-ES-MUy" eventType="touchUpInside" id="bRK-1c-BlM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ofc-Pi-1va" firstAttribute="top" secondItem="Xb9-4F-CTQ" secondAttribute="top" constant="175" id="HOx-6X-4SL"/>
+                            <constraint firstItem="M3K-u8-tLz" firstAttribute="top" secondItem="ofc-Pi-1va" secondAttribute="bottom" constant="75" id="Vwl-pr-nTY"/>
+                            <constraint firstItem="ofc-Pi-1va" firstAttribute="centerX" secondItem="VIg-Cu-c0f" secondAttribute="centerX" id="hHL-Dd-8Ug"/>
+                            <constraint firstItem="M3K-u8-tLz" firstAttribute="centerX" secondItem="VIg-Cu-c0f" secondAttribute="centerX" id="qif-Yj-LK7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Xb9-4F-CTQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="taskNameLabel" destination="ofc-Pi-1va" id="e6s-wE-TMt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ukE-JP-ajT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="942" y="1448"/>
         </scene>
         <!--Create Task View Controller-->
         <scene sceneID="5jP-up-Kae">
@@ -91,7 +132,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
-                                    <action selector="addButtonTapped:" destination="rCL-56-eEk" eventType="touchUpInside" id="jxT-hr-caN"/>
+                                    <action selector="addButtonTapped:" destination="rCL-56-eEk" eventType="touchUpInside" id="6ZY-Bp-C2F"/>
                                 </connections>
                             </button>
                         </subviews>
