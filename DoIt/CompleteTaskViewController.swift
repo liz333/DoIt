@@ -20,15 +20,16 @@ class CompleteTaskViewController: UIViewController {
         super.viewDidLoad()
         
         if task.importance {
-            taskNameLabel.text = "❗️\(task.name)"
+            taskNameLabel.text = "❗️" + task.name!
         } else {
             taskNameLabel.text = task.name
         }
     }
     
     @IBAction func completeButtontapped(_ sender: Any) {
-        previousVC.tasks.remove(at: previousVC.selectedIndex)
-        previousVC.tasklistTV.reloadData()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        context.delete(task)
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
         navigationController!.popViewController(animated: true)
     }
     

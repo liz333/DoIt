@@ -27,14 +27,14 @@ class CreateTaskViewController: UIViewController {
     }
     
     @IBAction func addButtonTapped(_ sender: Any) {
-        //creating a task from the outlet information
-        let task = Task()
+        //create a task from the outlet information
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let task = Task(context: context)
         task.name = taskNameTextField.text!
         task.importance = importanceSwitch.isOn
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
         
-        //Add new task array in previous viewcontroller
-        previousVC.tasks.append(task)
-        previousVC.tasklistTV.reloadData()
+        //Go back to previous viewcontroller
         navigationController!.popViewController(animated: true)
     }
     
